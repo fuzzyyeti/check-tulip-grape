@@ -14,5 +14,5 @@ To run
 
 ### Usage
 
-Modify the contents of USER_KEY to check balance of a specific account.
+Modify the contents of USER_KEY in index.js to check balance of a specific account.
 

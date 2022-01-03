@@ -2,6 +2,7 @@ const web3 = require("@solana/web3.js");
 const { PublicKey } = require("@solana/web3.js");
 const {struct, blob} = require("buffer-layout");
 const {i64, u64} = require("@project-serum/borsh");
+
 const RPC_URL = "https://solana-api.projectserum.com";
 
 const SOLFARM_PROGRAM_ID = new PublicKey('7vxeyaXGLqcp66fFShqUdHxdacp4k4kwUpRSSeoZLCZ4');
@@ -27,13 +28,13 @@ const main = async () =>
 
     if(!result)
     {
-        console.log(`Could not GRAPE-USD balance. Check if USER_KEY has deposited LP tokens before.`);
+        console.log(`Could not find GRAPE-USD balance. Check if USER_KEY has deposited LP tokens before.`);
         return;
     }
 
     const userBalanceMetadata = USER_BALANCE_METADATA.decode(Buffer.from(result.data, "base64"));
-    console.log("LP Token Balance:", userBalanceMetadata.totalLpTokens.toNumber()/1e6);
-    console.log(new Date(userBalanceMetadata.lastDepositTime.toNumber() * 1000).toDateString());
+    console.log('LP Token Balance:', userBalanceMetadata.totalLpTokens.toNumber()/1e6);
+    console.log('Last deposit date:', new Date(userBalanceMetadata.lastDepositTime.toNumber() * 1000).toDateString());
 
 }
 
